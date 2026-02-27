@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %} Admin Dashboard - Placement Portal {% endblock title %}
+        
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+            <!-- Custom JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+     
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+    <style>
+        {% comment %} .dashboard-page { display: none; }
+        .dashboard-page.active { display: block; } {% endcomment %}
+        .pending-badge { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    </style>
+</head>
+<body>
+    <div class="sidebar-wrapper">
+        <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+        
+          <!-- #its a call side bar page -->
+        {% include "placement_cell/includes/pc_sidebar.html" %}
+
+        <!-- Main Content -->
+        <main class="main-content">
+             <!-- #its a call topbar page -->
+            {% include "placement_cell/includes/pc_topbar.html" %}
+
+            
+           
+
+ <!-- body content mate -->
+            {% block content %}
+            {% endblock content %}
+
+            
+
+    <!-- #its a call model for  -->
+            {% include "placement_cell/includes/pc_models.html" %}
+
+  
+
+  
+    
+        </main>
+    </div>
+
+    
+                <!-- Dashboard JS -->
+    <script src="{% static 'js/pc_dashboard.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+   
+</body>
+</html>

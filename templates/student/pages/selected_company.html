@@ -1,0 +1,27 @@
+{% extends 'student/student_base.html' %}
+{% load static %}
+{% block content %}
+         <!-- ========== SELECTED COMPANIES PAGE ========== -->
+            <div id="page-selected-companies" class="dashboard-page">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-check-circle me-2"></i>Selected Companies</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">Companies where you have been selected (offer received).</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item selected-company-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>Data Labs</strong><br>
+                                    <small class="text-muted">Python Developer — Offer received on 25 Jan 2024</small>
+                                </div>
+                                <span class="badge badge-selected"><i class="fas fa-check-circle"></i> Selected</span>
+                            </li>
+                            <li class="list-group-item">
+                                <small class="text-muted">No other selections yet. Keep applying!</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

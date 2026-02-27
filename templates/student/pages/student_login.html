@@ -1,0 +1,117 @@
+{% extends "auth_header.html" %}
+{% load static %}
+
+{% block title %}Student Login - Placement Portal{% endblock %}
+
+{% block content %}
+
+
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-user-graduate fa-3x mb-3"></i>
+                    <h3>Student Login</h3>
+                    <p class="mb-0">Access your student dashboard</p>
+                </div>
+                <div class="card-body p-4">
+
+                    <form method="POST">
+                        {% csrf_token %}
+                            <!-- MESSAGE BLOCK START -->
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "error" %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {% else %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {% endif %}
+
+                {% if message.tags == "success" %}
+                    <i class="fas fa-check-circle me-2"></i>
+                {% elif message.tags == "error" %}
+                    <i class="fas fa-times-circle me-2"></i>
+                {% elif message.tags == "warning" %}
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                {% elif message.tags == "info" %}
+                    <i class="fas fa-info-circle me-2"></i>
+                {% endif %}
+
+                {{ message }}
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <!-- MESSAGE BLOCK END -->
+                        <div class="auth-form-field">
+                            <label class="form-label">Enrollment Number / Student ID</label>
+                            <div class="input-group auth-input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-id-card" aria-hidden="true"></i>
+                                </span>
+                                <input type="text" class="form-control" id="studentLoginEnrollNo" name="enroll_number" placeholder="Enter your Enrollment number" required autocomplete="username">
+                            </div>
+                        </div>  
+                        <div class="auth-form-field">
+                            <label class="form-label">Password</label>
+                            <div class="input-group auth-input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-lock" aria-hidden="true"></i>
+                                </span>
+                                <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
+                            </div>
+                        </div>
+                        <div class="auth-form-field d-flex justify-content-between align-items-center">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                            </div>
+                            <a href="#" class="text-decoration-none">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mb-3">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        </button>
+                        
+                        <div class="text-center">
+                            <p class="mb-0">Don't have an account? <a href="{% url 'student_register' %}" class="text-decoration-none">Register here</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    
+   
+     <!-- Custom JS
+    <script>
+        document.getElementById('studentLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (validateForm('studentLoginForm')) {
+                window.location.href = 'student-dashboard.html';
+            }
+        });
+    </script> -->
+
+
+
+
+    {% endblock %}
+
+    {% block extra_js %}
+<script src="{% static 'js/auth.js' %}"></script>
+{% endblock %}
+
+                        <!-- MESSAGE BLOCK
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %} -->

@@ -1,0 +1,114 @@
+ {% extends "placement_cell/pc_base.html" %}
+ {% load static %}
+ {% block content %}
+                <!-- ========== VIEW CONTACTS (ADMIN) ========== -->
+<div id="page-view-contacts" class="dashboard-page">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <i class="fas fa-address-book me-2"></i>View Contacts
+        </h5>
+      </div>
+  
+      <div class="card-body">
+  
+        <!-- Tabs -->
+        <ul class="nav nav-tabs admin-contact-tabs mb-4" role="tablist">
+          <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#contact-admin">
+              <i class="fas fa-user-shield me-1"></i> Admin
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#contact-student">
+              <i class="fas fa-user-graduate me-1"></i> Students
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#contact-visitor">
+              <i class="fas fa-users me-1"></i> Visitors
+            </button>
+          </li>
+        </ul>
+  
+        <!-- Tab Content -->
+        <div class="tab-content">
+  
+          <!-- ADMIN CONTACTS -->
+          <div class="tab-pane fade show active" id="contact-admin">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Placement Officer</td>
+                    <td>admin@college.edu</td>
+                    <td>+91 98765 11111</td>
+                    <td>Regarding placement policy clarification.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+  
+          <!-- STUDENT CONTACTS -->
+          <div class="tab-pane fade" id="contact-student">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Enrollment No</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Rahul Sharma</td>
+                    <td>rahul@college.edu</td>
+                    <td>CS2021-045</td>
+                    <td>Interview date related query.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+  
+          <!-- VISITOR CONTACTS -->
+          <div class="tab-pane fade" id="contact-visitor">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ABC HR</td>
+                    <td>hr@company.com</td>
+                    <td>+91 91234 56789</td>
+                    <td>Interested in campus recruitment.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}

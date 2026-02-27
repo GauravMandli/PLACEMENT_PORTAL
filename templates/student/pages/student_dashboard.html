@@ -1,0 +1,101 @@
+ {% extends 'student/student_base.html' %}
+ {% load static %}
+
+              {% block content %}
+ <!-- ========== DASHBOARD PAGE ========== -->
+            <div id="page-dashboard" class="dashboard-page active">
+                <!-- Greeting -->
+                <div class="mb-4">
+                    <h1 class="dashboard-greeting" id="studentGreeting">{{ greeting }}, {{ user.first_name|upper }} {{ user.last_name|upper }}</h1>
+                    <p class="dashboard-greeting-sub">Here’s your placement activity at a glance.</p>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-lg-4 mb-4">
+                        <div class="card student-profile-card h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0 fw-semibold"><i class="fas fa-user me-2 text-primary"></i>Student Profile</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-2"><strong>Name:</strong> <span id="profileCardName">{{ user.first_name }} {{ user.last_name }}</span></p>
+                                <p class="mb-2"><strong>Email:</strong> <span id="profileCardEmail">{{ user.email }}</span></p>
+                                <p class="mb-2"><strong>Phone Number:</strong> <span id="profileCardPhone">+91 {{ profile.phone }}</span></p>
+                                <p class="mb-2"><strong>DOB:</strong> <span id="profileCardDob">{{ profile.dob }}</span></p>
+                                <p class="mb-2"><strong>Gender:</strong> <span id="profileCardGender">{{ profile.gender }}</span></p>
+                                <p class="mb-2"><strong>Course:</strong> <span id="profileCardCourse">{{ profile.course }}</span></p>
+                                <p class="mb-2"><strong>Year:</strong> <span id="profileCardYear">{{ profile.year }}</span></p>
+                                <p class="mb-2"><strong>Roll No:</strong> <span id="profileCardStudentId">{{ profile.enroll_number }}</span></p>
+                                <p class="mb-2"><strong>CGPA:</strong> <span id="profileCardCgpa">{{ profile.cgpa }}</span> / 10</p>
+                                <p class="mb-2"><strong>Skills:</strong> <span id="profileCardSkills">{{ profile.skills }}</span></p>
+                                <p class="mb-2"><strong>LinkedIn:</strong> <span id="profileCardLinkedin">{{ profile.linkedin }}</span></p>
+                                <p class="mb-2"><strong>GitHub:</strong> <span id="profileCardGithub">{{ profile.github }}</span></p>
+                                <p class="mb-2"><strong>Portfolio:</strong> <span id="profileCardPortfolio">{{profile.portfolio }}</span></p>
+                                <!-- <p class="mb-3"><strong>Resume:</strong> <span id="profileCardResume">{{profile.resume }}</span></p> -->
+                        
+                                <a href="{{ profile.resume.url }}" class="btn btn-primary w-100" id="profileResumeBtn">
+                                    <i class="fas fa-file-pdf me-2"></i>Resume View
+                                </a>
+                               
+            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="row mb-4">
+                            <div class="col-md-4 mb-4">
+                                <div class="stat-card">
+                                    <i class="fas fa-file-alt fa-2x mb-2"></i>
+                                    <h3>8</h3>
+                                    <p>Jobs Applied</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="stat-card warning">
+                                    <i class="fas fa-phone-alt fa-2x mb-2"></i>
+                                    <h3>3</h3>
+                                    <p>Interview Calls</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="stat-card success">
+                                    <i class="fas fa-check-circle fa-2x mb-2"></i>
+                                    <h3>1</h3>
+                                    <p>Selected Companies</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Recent activity timeline -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0 fw-semibold"><i class="fas fa-stream me-2"></i>Recent Activity</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="activity-timeline">
+                                    <li class="timeline-selected">
+                                        <span class="timeline-time">22 Jan 2024</span>
+                                        <span class="badge badge-selected"><i class="fas fa-check-circle"></i> Selected</span>
+                                        <span class="timeline-desc d-block mt-1">Data Labs — Python Developer. Offer received.</span>
+                                    </li>
+                                    <li class="timeline-shortlisted">
+                                        <span class="timeline-time">21 Jan 2024</span>
+                                        <span class="badge badge-pending"><i class="fas fa-clock"></i> Under Review</span>
+                                        <span class="timeline-desc d-block mt-1">Innovate Ltd — Frontend Developer. Interview scheduled.</span>
+                                    </li>
+                                    <li class="timeline-applied">
+                                        <span class="timeline-time">19 Jan 2024</span>
+                                        <span class="badge badge-applied"><i class="fas fa-paper-plane"></i> Applied</span>
+                                        <span class="timeline-desc d-block mt-1">Cloud Solutions — Backend Developer.</span>
+                                    </li>
+                                    <li class="timeline-applied">
+                                        <span class="timeline-time">16 Jan 2024</span>
+                                        <span class="badge badge-applied"><i class="fas fa-paper-plane"></i> Applied</span>
+                                        <span class="timeline-desc d-block mt-1">Tech Corp — Software Engineer.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    {% endblock %}

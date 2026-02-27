@@ -1,0 +1,87 @@
+{% extends "auth_header.html" %}
+{% load static %}
+{% block title %}Admin Login - Placement Portal{% endblock title %}
+
+{% block content %}
+<!-- Auth Container -->
+    <div class="auth-container">
+        <div class="container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-user-shield fa-3x mb-3"></i>
+                    <h3>Admin Login</h3>
+                    <p class="mb-0">Administrative access only</p>
+                </div>
+                <div class="card-body p-4">
+                    <div class="admin-note">
+                        <small><i class="fas fa-exclamation-triangle me-1"></i><strong>Restricted Access:</strong> This page is for authorized placement cell administrators only.</small>
+                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+
+                    <!-- MESSAGE BLOCK START -->
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {% else %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {% endif %}
+
+                            {% if message.tags == "success" %}
+                            <i class="fas fa-check-circle me-2"></i>
+                            {% elif message.tags == "error" %}
+                            <i class="fas fa-times-circle me-2"></i>
+                            {% elif message.tags == "warning" %}
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            {% elif message.tags == "info" %}
+                            <i class="fas fa-info-circle me-2"></i>
+                            {% endif %}
+
+                            {{ message }}
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <!-- MESSAGE BLOCK END -->
+
+                        <div class="auth-form-field">
+                            <label class="form-label">Admin Username</label>
+                            <div class="input-group auth-input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                </span>
+                                <input type="text" class="form-control" name="username" placeholder="Enter admin username or email" required>
+                            </div>
+                        </div>
+                        <div class="auth-form-field">
+                            <label class="form-label">Password</label>
+                            <div class="input-group auth-input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-lock" aria-hidden="true"></i>
+                                </span>
+                                <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100 mb-3">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login as Admin
+                        </button>
+                        <div class="text-center">
+                            <a href="contact.html" class="text-decoration-none">Need admin access? Contact us</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/auth.js' %}"></script>
+{% endblock %}

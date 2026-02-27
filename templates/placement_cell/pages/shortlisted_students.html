@@ -1,0 +1,59 @@
+ {% extends "placement_cell/pc_base.html" %}
+ {% load static %}
+ {% block content %}
+ <!-- ========== VIEW SHORTLISTED STUDENTS (ADMIN) ========== -->
+<div id="page-shortlisted-students-admin" class="dashboard-page">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <i class="fas fa-user-clock me-2"></i>Shortlisted Students
+        </h5>
+      </div>
+  
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Company Name</th>
+                <th>Job Requirement</th>
+                <th>Student Name</th>
+                <th>Enrollment No</th>
+                <th>Branch</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+              <tr>
+                <td>Tech Corp</td>
+                <td>Python Developer</td>
+                <td>Rahul Sharma</td>
+                <td>CS2021-045</td>
+                <td>Computer Science</td>
+                <td>
+                  <span class="badge badge-pending">
+                    <i class="fas fa-clock"></i> Shortlisted
+                  </span>
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary btn-icon view-student"
+                    data-name="Rahul Sharma"
+                    data-email="rahul@college.edu"
+                    data-phone="+91 98765 43210"
+                    data-cgpa="8.4"
+                    data-skills="Python, Django, SQL">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+  
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    {% endblock content%}

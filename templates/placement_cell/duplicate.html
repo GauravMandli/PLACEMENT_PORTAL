@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Placement Portal</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dashboard-page { display: none; }
+        .dashboard-page.active { display: block; }
+        .pending-badge { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    </style>
+</head>
+<body>
+    <div class="sidebar-wrapper">
+        <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+        <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-briefcase"></i>Placement Portal</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="#" class="nav-link-dashboard active" data-page="page-home">
+                            <i class="fas fa-home"></i>Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link-dashboard" data-page="page-view-students">
+                            <i class="fas fa-user-graduate"></i>View Students
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link-dashboard" data-page="page-view-companies">
+                            <i class="fas fa-building"></i>View Companies
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link-dashboard" data-page="page-approve-companies">
+                            <i class="fas fa-check-circle"></i>Approve Companies
+                            <span class="badge bg-danger pending-badge ms-2" id="pending-count">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link-dashboard" data-page="page-view-requirements">
+                            <i class="fas fa-briefcase"></i>View Requirements
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="nav-link-dashboard" data-page="page-shortlisted-students-admin">
+                          <i class="fas fa-user-clock"></i>View Shortlisted Students
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="#" class="nav-link-dashboard" data-page="page-selected-students-admin">
+                          <i class="fas fa-user-check"></i>View Selected Students
+                        </a>
+                      </li>
+                      
+                    <li>
+                        <a href="#" class="nav-link-dashboard" data-page="page-view-contacts">
+                            <i class="fas fa-address-book"></i>View Contacts
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="admin-login.html"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <div class="topbar">
+                <div>
+                    <button class="mobile-menu-toggle" type="button" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="d-inline ms-3 mb-0 fs-4 fw-bold" id="page-title">Home</h1>
+                </div>
+                <div class="user-profile">
+                    <div class="text-end">
+                        <strong>Placement Officer</strong><br>
+                        <small class="text-muted">Administrator</small>
+                    </div>
+                    <div class="user-avatar">PO</div>
+                </div>
+            </div>
+
+            <!-- ========== HOME PAGE ========== -->
+            <div id="page-home" class="dashboard-page active">
+                <div class="mb-4">
+                    <h1 class="dashboard-greeting">Welcome, Placement Officer</h1>
+                    <p class="dashboard-greeting-sub">System overview and pending actions.</p>
+                </div>
+
+                <!-- Pending approvals count — prominent -->
+                <div class="card border-warning mb-4">
+                    <div class="card-body d-flex flex-wrap align-items-center justify-content-between gap-3">
+                        <div class="d-flex align-items-center">
+                            <div class="rounded-circle bg-warning bg-opacity-25 p-3 me-3">
+                                <i class="fas fa-clock text-warning fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0 fw-bold">3 Pending Approvals</h5>
+                                <p class="text-muted small mb-0">Company registrations awaiting your review</p>
+                            </div>
+                        </div>
+                        <a href="#" class="nav-link-dashboard btn btn-warning" data-page="page-approve-companies">
+                            <i class="fas fa-check-circle me-2"></i>Review & Approve
+                        </a>
+                    </div>
+                </div>
+
+                <!-- System overview cards -->
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card">
+                            <i class="fas fa-user-graduate fa-2x mb-2"></i>
+                            <h3>1,250</h3>
+                            <p>Total Students</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card success">
+                            <i class="fas fa-building fa-2x mb-2"></i>
+                            <h3>150</h3>
+                            <p>Registered Companies</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card warning">
+                            <i class="fas fa-briefcase fa-2x mb-2"></i>
+                            <h3>500</h3>
+                            <p>Active Requirements</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card info">
+                            <i class="fas fa-check-circle fa-2x mb-2"></i>
+                            <h3>800</h3>
+                            <p>Total Placements</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Recent registrations -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0 fw-semibold"><i class="fas fa-user-plus me-2"></i>Recent Registrations</h5>
+                                <a href="#" class="nav-link-dashboard btn btn-sm btn-outline-primary" data-page="page-view-students">View all</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <h6 class="small text-muted text-uppercase mb-2">Students</h6>
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="recent-app-item border-0 px-0 py-2">
+                                            <span class="fw-semibold">Rajesh Kumar</span>
+                                            <span class="text-muted small">— IT · 28 Jan</span>
+                                        </li>
+                                        <li class="recent-app-item border-0 px-0 py-2">
+                                            <span class="fw-semibold">Priya Sharma</span>
+                                            <span class="text-muted small">— ECE · 27 Jan</span>
+                                        </li>
+                                        <li class="recent-app-item border-0 px-0 py-2">
+                                            <span class="fw-semibold">Amit Verma</span>
+                                            <span class="text-muted small">— CS · 26 Jan</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h6 class="small text-muted text-uppercase mb-2">Companies</h6>
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="recent-app-item border-0 px-0 py-2">
+                                            <span class="fw-semibold">StartupXYZ</span>
+                                            <span class="text-muted small">— Pending · 27 Jan</span>
+                                        </li>
+                                        <li class="recent-app-item border-0 px-0 py-2">
+                                            <span class="fw-semibold">FinanceHub</span>
+                                            <span class="text-muted small">— Pending · 26 Jan</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- System overview cards (stats) -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0 fw-semibold"><i class="fas fa-chart-pie me-2"></i>System Overview</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <div class="system-overview-card text-center">
+                                            <h4 class="text-primary mb-1 fw-bold">85%</h4>
+                                            <small class="text-muted">Placement Rate</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="system-overview-card text-center">
+                                            <h4 class="text-success mb-1 fw-bold">₹12.5L</h4>
+                                            <small class="text-muted">Avg Package</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="system-overview-card text-center">
+                                            <h4 class="text-info mb-1 fw-bold">₹28L</h4>
+                                            <small class="text-muted">Highest Package</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="system-overview-card text-center">
+                                            <h4 class="text-secondary mb-1 fw-bold">12</h4>
+                                            <small class="text-muted">New Jobs This Week</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3 pt-3 border-top">
+                                    <a href="#" class="nav-link-dashboard btn btn-outline-primary w-100" data-page="page-view-requirements">
+                                        <i class="fas fa-briefcase me-2"></i>View All Requirements
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== VIEW STUDENTS PAGE ========== -->
+            <div id="page-view-students" class="dashboard-page">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-user-graduate me-2"></i>View Students</h5>
+                        <div class="input-group" style="width: 300px;">
+                            <input type="text" class="form-control form-control-sm" placeholder="Search students..." id="studentSearch">
+                            <button class="btn btn-outline-secondary btn-sm" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Branch</th>
+                                        <th>CGPA</th>
+                                        <th>Resume</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>John Doe</td>
+                                        <td>Computer Science</td>
+                                        <td>8.5</td>
+                                        <td>
+                                            <span class="badge bg-success">Available</span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info me-1" onclick="viewResume('john_doe_resume.pdf')">
+                                                <i class="fas fa-eye me-1"></i>View Resume
+                                            </button>
+                                            <button class="btn btn-sm btn-primary" onclick="downloadResume('john_doe_resume.pdf')">
+                                                <i class="fas fa-download me-1"></i>Download Resume
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jane Smith</td>
+                                        <td>Electronics & Communication</td>
+                                        <td>8.8</td>
+                                        <td>
+                                            <span class="badge bg-success">Available</span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info me-1" onclick="viewResume('jane_smith_resume.pdf')">
+                                                <i class="fas fa-eye me-1"></i>View Resume
+                                            </button>
+                                            <button class="btn btn-sm btn-primary" onclick="downloadResume('jane_smith_resume.pdf')">
+                                                <i class="fas fa-download me-1"></i>Download Resume
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mike Johnson</td>
+                                        <td>Mechanical Engineering</td>
+                                        <td>8.2</td>
+                                        <td>
+                                            <span class="badge bg-success">Available</span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info me-1" onclick="viewResume('mike_johnson_resume.pdf')">
+                                                <i class="fas fa-eye me-1"></i>View Resume
+                                            </button>
+                                            <button class="btn btn-sm btn-primary" onclick="downloadResume('mike_johnson_resume.pdf')">
+                                                <i class="fas fa-download me-1"></i>Download Resume
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sarah Williams</td>
+                                        <td>Computer Science</td>
+                                        <td>8.9</td>
+                                        <td>
+                                            <span class="badge bg-success">Available</span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info me-1" onclick="viewResume('sarah_williams_resume.pdf')">
+                                                <i class="fas fa-eye me-1"></i>View Resume
+                                            </button>
+                                            <button class="btn btn-sm btn-primary" onclick="downloadResume('sarah_williams_resume.pdf')">
+                                                <i class="fas fa-download me-1"></i>Download Resume
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rajesh Kumar</td>
+                                        <td>Information Technology</td>
+                                        <td>8.3</td>
+                                        <td>
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-secondary" disabled>
+                                                <i class="fas fa-eye me-1"></i>View Resume
+                                            </button>
+                                            <button class="btn btn-sm btn-secondary" disabled>
+                                                <i class="fas fa-download me-1"></i>Download Resume
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== VIEW COMPANIES PAGE ========== -->
+            <div id="page-view-companies" class="dashboard-page">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-building me-2"></i>View Companies</h5>
+                        <div class="input-group" style="width: 300px;">
+                            <input type="text" class="form-control form-control-sm" placeholder="Search companies..." id="companySearch">
+                            <button class="btn btn-outline-secondary btn-sm" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Tech Corp</h5>
+                                        <p class="text-muted mb-2"><strong>Industry:</strong> Information Technology</p>
+                                        <p class="text-muted mb-2"><strong>Location:</strong> Bangalore, Karnataka</p>
+                                        <p class="text-muted mb-2"><strong>Email:</strong> hr@techcorp.com</p>
+                                        <p class="text-muted mb-3"><strong>Status:</strong> <span class="badge bg-success">Active</span></p>
+                                        <button class="btn btn-sm btn-primary view-company-details" data-company="Tech Corp">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Innovate Ltd</h5>
+                                        <p class="text-muted mb-2"><strong>Industry:</strong> Software Development</p>
+                                        <p class="text-muted mb-2"><strong>Location:</strong> Mumbai, Maharashtra</p>
+                                        <p class="text-muted mb-2"><strong>Email:</strong> careers@innovate.com</p>
+                                        <p class="text-muted mb-3"><strong>Status:</strong> <span class="badge bg-success">Active</span></p>
+                                        <button class="btn btn-sm btn-primary view-company-details" data-company="Innovate Ltd">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Cloud Solutions</h5>
+                                        <p class="text-muted mb-2"><strong>Industry:</strong> Cloud Services</p>
+                                        <p class="text-muted mb-2"><strong>Location:</strong> Hyderabad, Telangana</p>
+                                        <p class="text-muted mb-2"><strong>Email:</strong> hr@cloudsolutions.com</p>
+                                        <p class="text-muted mb-3"><strong>Status:</strong> <span class="badge bg-success">Active</span></p>
+                                        <button class="btn btn-sm btn-primary view-company-details" data-company="Cloud Solutions">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Digital Innovations</h5>
+                                        <p class="text-muted mb-2"><strong>Industry:</strong> Digital Marketing</p>
+                                        <p class="text-muted mb-2"><strong>Location:</strong> Pune, Maharashtra</p>
+                                        <p class="text-muted mb-2"><strong>Email:</strong> contact@digitalinnovations.com</p>
+                                        <p class="text-muted mb-3"><strong>Status:</strong> <span class="badge bg-success">Active</span></p>
+                                        <button class="btn btn-sm btn-primary view-company-details" data-company="Digital Innovations">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== VIEW REQUIREMENTS PAGE ========== -->
+            <div id="page-view-requirements" class="dashboard-page">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-briefcase me-2"></i>View Requirements</h5>
+                        <div class="input-group" style="width: 300px;">
+                            <input type="text" class="form-control form-control-sm" placeholder="Search requirements..." id="requirementSearch">
+                            <button class="btn btn-outline-secondary btn-sm" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Job Title</th>
+                                        <th>Company</th>
+                                        <th>Job Type</th>
+                                        <th>Posted Date</th>
+                                        <th>Applications</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Software Engineer</td>
+                                        <td>Tech Corp</td>
+                                        <td>Full Time</td>
+                                        <td>15 Jan 2024</td>
+                                        <td>15</td>
+                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info me-1 view-requirement-details" data-job-id="1" data-job-title="Software Engineer" data-company="Tech Corp">View Details</button>
+                                            <button class="btn btn-sm btn-primary view-applied-students-admin" data-job-id="1" data-job-title="Software Engineer">
+                                                View Applied Students
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Frontend Developer</td>
+                                        <td>Innovate Ltd</td>
+                                        <td>Full Time</td>
+                                        <td>20 Jan 2024</td>
+                                        <td>8</td>
+                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info me-1 view-requirement-details" data-job-id="2" data-job-title="Frontend Developer" data-company="Innovate Ltd">View Details</button>
+                                            <button class="btn btn-sm btn-primary view-applied-students-admin" data-job-id="2" data-job-title="Frontend Developer">
+                                                View Applied Students
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Backend Developer</td>
+                                        <td>Cloud Solutions</td>
+                                        <td>Full Time</td>
+                                        <td>18 Jan 2024</td>
+                                        <td>12</td>
+                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info me-1 view-requirement-details" data-job-id="3" data-job-title="Backend Developer" data-company="Cloud Solutions">View Details</button>
+                                            <button class="btn btn-sm btn-primary view-applied-students-admin" data-job-id="3" data-job-title="Backend Developer">
+                                                View Applied Students
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Python Developer</td>
+                                        <td>Data Labs</td>
+                                        <td>Full Time</td>
+                                        <td>22 Jan 2024</td>
+                                        <td>10</td>
+                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info me-1 view-requirement-details" data-job-id="4" data-job-title="Python Developer" data-company="Data Labs">View Details</button>
+                                            <button class="btn btn-sm btn-primary view-applied-students-admin" data-job-id="4" data-job-title="Python Developer">
+                                                View Applied Students
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== APPROVE COMPANIES PAGE ========== -->
+            <div id="page-approve-companies" class="dashboard-page">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-check-circle me-2"></i>Approve Companies</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">Review and approve pending company registration requests.</p>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Company Name</th>
+                                        <th>HR Name</th>
+                                        <th>Email</th>
+                                        <th>Industry</th>
+                                        <th>Registration Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>StartupXYZ</td>
+                                        <td>Rajesh Patel</td>
+                                        <td>hr@startupxyz.com</td>
+                                        <td>Software</td>
+                                        <td>25 Jan 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success me-1 approve-company" data-company-id="1" data-company-name="StartupXYZ">
+                                                <i class="fas fa-check me-1"></i>Approve
+                                            </button>
+                                            <button class="btn btn-sm btn-danger reject-company" data-company-id="1" data-company-name="StartupXYZ">
+                                                <i class="fas fa-times me-1"></i>Reject
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>FinanceHub</td>
+                                        <td>Priya Sharma</td>
+                                        <td>careers@financehub.com</td>
+                                        <td>Finance</td>
+                                        <td>26 Jan 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success me-1 approve-company" data-company-id="2" data-company-name="FinanceHub">
+                                                <i class="fas fa-check me-1"></i>Approve
+                                            </button>
+                                            <button class="btn btn-sm btn-danger reject-company" data-company-id="2" data-company-name="FinanceHub">
+                                                <i class="fas fa-times me-1"></i>Reject
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>TechStart Inc</td>
+                                        <td>Amit Verma</td>
+                                        <td>hr@techstart.com</td>
+                                        <td>IT Services</td>
+                                        <td>27 Jan 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success me-1 approve-company" data-company-id="3" data-company-name="TechStart Inc">
+                                                <i class="fas fa-check me-1"></i>Approve
+                                            </button>
+                                            <button class="btn btn-sm btn-danger reject-company" data-company-id="3" data-company-name="TechStart Inc">
+                                                <i class="fas fa-times me-1"></i>Reject
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- ========== VIEW SHORTLISTED STUDENTS (ADMIN) ========== -->
+<div id="page-shortlisted-students-admin" class="dashboard-page">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <i class="fas fa-user-clock me-2"></i>Shortlisted Students
+        </h5>
+      </div>
+  
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Company Name</th>
+                <th>Job Requirement</th>
+                <th>Student Name</th>
+                <th>Enrollment No</th>
+                <th>Branch</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+              <tr>
+                <td>Tech Corp</td>
+                <td>Python Developer</td>
+                <td>Rahul Sharma</td>
+                <td>CS2021-045</td>
+                <td>Computer Science</td>
+                <td>
+                  <span class="badge badge-pending">
+                    <i class="fas fa-clock"></i> Shortlisted
+                  </span>
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary btn-icon view-student"
+                    data-name="Rahul Sharma"
+                    data-email="rahul@college.edu"
+                    data-phone="+91 98765 43210"
+                    data-cgpa="8.4"
+                    data-skills="Python, Django, SQL">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+  
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- ========== VIEW SELECTED STUDENTS (ADMIN) ========== -->
+<div id="page-selected-students-admin" class="dashboard-page">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <i class="fas fa-user-check me-2"></i>Selected Students
+        </h5>
+      </div>
+  
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Company Name</th>
+                <th>Job Requirement</th>
+                <th>Student Name</th>
+                <th>Enrollment No</th>
+                <th>Branch</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+              <tr>
+                <td>Data Labs</td>
+                <td>Python Developer</td>
+                <td>Neha Patel</td>
+                <td>CS2021-062</td>
+                <td>Computer Science</td>
+                <td>
+                  <span class="badge badge-selected">
+                    <i class="fas fa-check-circle"></i> Selected
+                  </span>
+                </td>
+              </tr>
+  
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+           <!-- ========== VIEW CONTACTS (ADMIN) ========== -->
+<div id="page-view-contacts" class="dashboard-page">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <i class="fas fa-address-book me-2"></i>View Contacts
+        </h5>
+      </div>
+  
+      <div class="card-body">
+  
+        <!-- Tabs -->
+        <ul class="nav nav-tabs admin-contact-tabs mb-4" role="tablist">
+          <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#contact-admin">
+              <i class="fas fa-user-shield me-1"></i> Admin
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#contact-student">
+              <i class="fas fa-user-graduate me-1"></i> Students
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#contact-visitor">
+              <i class="fas fa-users me-1"></i> Visitors
+            </button>
+          </li>
+        </ul>
+  
+        <!-- Tab Content -->
+        <div class="tab-content">
+  
+          <!-- ADMIN CONTACTS -->
+          <div class="tab-pane fade show active" id="contact-admin">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Placement Officer</td>
+                    <td>admin@college.edu</td>
+                    <td>+91 98765 11111</td>
+                    <td>Regarding placement policy clarification.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+  
+          <!-- STUDENT CONTACTS -->
+          <div class="tab-pane fade" id="contact-student">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Enrollment No</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Rahul Sharma</td>
+                    <td>rahul@college.edu</td>
+                    <td>CS2021-045</td>
+                    <td>Interview date related query.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+  
+          <!-- VISITOR CONTACTS -->
+          <div class="tab-pane fade" id="contact-visitor">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ABC HR</td>
+                    <td>hr@company.com</td>
+                    <td>+91 91234 56789</td>
+                    <td>Interested in campus recruitment.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+    <!-- Company Details Modal -->
+    <div class="modal fade" id="companyDetailsModal" tabindex="-1" aria-labelledby="companyDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="companyDetailsModalLabel">Company Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="companyDetailsContent">
+                    <!-- Company details will be populated here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Applied Students Modal (Admin) -->
+    <div class="modal fade" id="appliedStudentsAdminModal" tabindex="-1" aria-labelledby="appliedStudentsAdminModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="appliedStudentsAdminModalLabel">Applied Students - <span id="admin-modal-job-title"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Branch</th>
+                                    <th>CGPA</th>
+                                    <th>Resume</th>
+                                    <th>Applied Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-applied-students-table-body">
+                                <!-- Student rows will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        (function() {
+            // Sample data
+            const companyDetails = {
+                'Tech Corp': {
+                    name: 'Tech Corp',
+                    industry: 'Information Technology',
+                    location: 'Bangalore, Karnataka',
+                    email: 'hr@techcorp.com',
+                    phone: '+91 80 1234 5678',
+                    website: 'www.techcorp.com',
+                    description: 'Leading IT services company specializing in software development and cloud solutions.',
+                    hrName: 'Sarah Johnson',
+                    founded: '2010',
+                    employees: '500+'
+                },
+                'Innovate Ltd': {
+                    name: 'Innovate Ltd',
+                    industry: 'Software Development',
+                    location: 'Mumbai, Maharashtra',
+                    email: 'careers@innovate.com',
+                    phone: '+91 22 2345 6789',
+                    website: 'www.innovate.com',
+                    description: 'Innovative software solutions provider focused on cutting-edge technology.',
+                    hrName: 'Rajesh Kumar',
+                    founded: '2015',
+                    employees: '200+'
+                },
+                'Cloud Solutions': {
+                    name: 'Cloud Solutions',
+                    industry: 'Cloud Services',
+                    location: 'Hyderabad, Telangana',
+                    email: 'hr@cloudsolutions.com',
+                    phone: '+91 40 3456 7890',
+                    website: 'www.cloudsolutions.com',
+                    description: 'Premier cloud infrastructure and services provider.',
+                    hrName: 'Priya Sharma',
+                    founded: '2012',
+                    employees: '300+'
+                },
+                'Digital Innovations': {
+                    name: 'Digital Innovations',
+                    industry: 'Digital Marketing',
+                    location: 'Pune, Maharashtra',
+                    email: 'contact@digitalinnovations.com',
+                    phone: '+91 20 4567 8901',
+                    website: 'www.digitalinnovations.com',
+                    description: 'Digital transformation and marketing solutions company.',
+                    hrName: 'Amit Verma',
+                    founded: '2018',
+                    employees: '150+'
+                }
+            };
+
+            const appliedStudentsAdminData = {
+                1: [
+                    { name: 'John Doe', branch: 'CS', cgpa: '8.5', resume: 'john_doe_resume.pdf', appliedDate: '16 Jan 2024' },
+                    { name: 'Jane Smith', branch: 'ECE', cgpa: '8.8', resume: 'jane_smith_resume.pdf', appliedDate: '17 Jan 2024' }
+                ],
+                2: [
+                    { name: 'Sarah Williams', branch: 'CS', cgpa: '8.9', resume: 'sarah_williams_resume.pdf', appliedDate: '21 Jan 2024' }
+                ],
+                3: [
+                    { name: 'Mike Johnson', branch: 'ME', cgpa: '8.2', resume: 'mike_johnson_resume.pdf', appliedDate: '19 Jan 2024' }
+                ],
+                4: [
+                    { name: 'Rajesh Kumar', branch: 'IT', cgpa: '8.3', resume: 'rajesh_kumar_resume.pdf', appliedDate: '22 Jan 2024' }
+                ]
+            };
+
+            var pageTitles = {
+                'page-home': 'Home',
+                'page-view-students': 'View Students',
+                'page-view-companies': 'View Companies',
+                'page-view-requirements': 'View Requirements',
+                'page-approve-companies': 'Approve Companies',
+                'page-view-contacts': 'View Contacts'
+            };
+
+            function showPage(pageId) {
+                document.querySelectorAll('.dashboard-page').forEach(function(el) {
+                    el.classList.remove('active');
+                });
+                var page = document.getElementById(pageId);
+                if (page) {
+                    page.classList.add('active');
+                }
+                var titleEl = document.getElementById('page-title');
+                if (titleEl) {
+                    titleEl.textContent = pageTitles[pageId] || 'Home';
+                }
+                document.querySelectorAll('.sidebar-menu .nav-link-dashboard').forEach(function(link) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Sidebar navigation
+            document.querySelectorAll('.nav-link-dashboard').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var pageId = this.getAttribute('data-page');
+                    if (pageId) {
+                        showPage(pageId);
+                    }
+                });
+            });
+
+            // View Company Details
+            document.querySelectorAll('.view-company-details').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var companyName = this.getAttribute('data-company');
+                    var details = companyDetails[companyName];
+                    if (details) {
+                        var content = `
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <strong>Company Name:</strong> ${details.name}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Industry:</strong> ${details.industry}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Location:</strong> ${details.location}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Founded:</strong> ${details.founded}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Email:</strong> ${details.email}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Phone:</strong> ${details.phone}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Website:</strong> <a href="https://${details.website}" target="_blank">${details.website}</a>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>HR Name:</strong> ${details.hrName}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Employees:</strong> ${details.employees}
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <strong>Description:</strong><br>
+                                    <p class="text-muted">${details.description}</p>
+                                </div>
+                            </div>
+                        `;
+                        document.getElementById('companyDetailsContent').innerHTML = content;
+                        var modal = new bootstrap.Modal(document.getElementById('companyDetailsModal'));
+                        modal.show();
+                    }
+                });
+            });
+
+            // View Applied Students (Admin)
+            document.querySelectorAll('.view-applied-students-admin').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var jobId = this.getAttribute('data-job-id');
+                    var jobTitle = this.getAttribute('data-job-title');
+                    var students = appliedStudentsAdminData[jobId] || [];
+
+                    document.getElementById('admin-modal-job-title').textContent = jobTitle;
+                    var tbody = document.getElementById('admin-applied-students-table-body');
+                    tbody.innerHTML = '';
+
+                    if (students.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted">No applications received yet.</td></tr>';
+                    } else {
+                        students.forEach(function(student) {
+                            var row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${student.name}</td>
+                                <td>${student.branch}</td>
+                                <td>${student.cgpa}</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary" onclick="downloadResume('${student.resume}'); return false;">
+                                        <i class="fas fa-download me-1"></i>Download
+                                    </a>
+                                </td>
+                                <td>${student.appliedDate}</td>
+                            `;
+                            tbody.appendChild(row);
+                        });
+                    }
+
+                    var modal = new bootstrap.Modal(document.getElementById('appliedStudentsAdminModal'));
+                    modal.show();
+                });
+            });
+
+            // Approve/Reject Companies
+            document.querySelectorAll('.approve-company').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var companyId = this.getAttribute('data-company-id');
+                    var companyName = this.getAttribute('data-company-name');
+                    document.getElementById('confirmApproveCompanyName').textContent = companyName;
+                    document.getElementById('confirmApproveBtn').setAttribute('data-company-id', companyId);
+                    document.getElementById('confirmApproveBtn').setAttribute('data-company-name', companyName);
+                    var modal = new bootstrap.Modal(document.getElementById('approveCompanyModal'));
+                    modal.show();
+                });
+            });
+
+            document.querySelectorAll('.reject-company').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var companyId = this.getAttribute('data-company-id');
+                    var companyName = this.getAttribute('data-company-name');
+                    document.getElementById('confirmRejectCompanyName').textContent = companyName;
+                    document.getElementById('confirmRejectCompanyBtn').setAttribute('data-company-id', companyId);
+                    document.getElementById('confirmRejectCompanyBtn').setAttribute('data-company-name', companyName);
+                    var modal = new bootstrap.Modal(document.getElementById('rejectCompanyModal'));
+                    modal.show();
+                });
+            });
+
+            // Confirm Approve Company
+            document.getElementById('confirmApproveBtn').addEventListener('click', function() {
+                var companyId = this.getAttribute('data-company-id');
+                var companyName = this.getAttribute('data-company-name');
+                var row = document.querySelector('[data-company-id="' + companyId + '"]').closest('tr');
+                row.remove();
+                updatePendingCount();
+                if (typeof showToast === 'function') {
+                    showToast(companyName + ' approved successfully.', 'success');
+                } else {
+                    alert(companyName + ' approved successfully.');
+                }
+                bootstrap.Modal.getInstance(document.getElementById('approveCompanyModal')).hide();
+            });
+
+            // Confirm Reject Company
+            document.getElementById('confirmRejectCompanyBtn').addEventListener('click', function() {
+                var companyId = this.getAttribute('data-company-id');
+                var companyName = this.getAttribute('data-company-name');
+                var row = document.querySelector('[data-company-id="' + companyId + '"]').closest('tr');
+                row.remove();
+                updatePendingCount();
+                if (typeof showToast === 'function') {
+                    showToast(companyName + ' rejected.', 'danger');
+                } else {
+                    alert(companyName + ' rejected.');
+                }
+                bootstrap.Modal.getInstance(document.getElementById('rejectCompanyModal')).hide();
+            });
+
+            function updatePendingCount() {
+                var pendingRows = document.querySelectorAll('#page-approve-companies tbody tr');
+                var count = pendingRows.length;
+                var badge = document.getElementById('pending-count');
+                if (badge) {
+                    badge.textContent = count;
+                    if (count === 0) {
+                        badge.classList.add('d-none');
+                    } else {
+                        badge.classList.remove('d-none');
+                    }
+                }
+            }
+
+            // View Requirement Details
+            document.querySelectorAll('.view-requirement-details').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var jobTitle = this.getAttribute('data-job-title');
+                    var company = this.getAttribute('data-company');
+                    var jobId = this.getAttribute('data-job-id');
+                    
+                    var requirementDetails = {
+                        1: { title: 'Software Engineer', company: 'Tech Corp', type: 'Full Time', salary: '8-12 LPA', location: 'Bangalore', skills: 'Java, Spring, SQL', eligibility: 'CGPA ≥ 7.5', posted: '15 Jan 2024', applications: 15 },
+                        2: { title: 'Frontend Developer', company: 'Innovate Ltd', type: 'Full Time', salary: '6-10 LPA', location: 'Mumbai', skills: 'React, JavaScript, HTML/CSS', eligibility: 'CGPA ≥ 7.0', posted: '20 Jan 2024', applications: 8 },
+                        3: { title: 'Backend Developer', company: 'Cloud Solutions', type: 'Full Time', salary: '7-11 LPA', location: 'Hyderabad', skills: 'Node.js, MongoDB, Express', eligibility: 'CGPA ≥ 7.0', posted: '18 Jan 2024', applications: 12 },
+                        4: { title: 'Python Developer', company: 'Data Labs', type: 'Full Time', salary: '9-13 LPA', location: 'Pune', skills: 'Python, Django, SQL', eligibility: 'CGPA ≥ 7.5', posted: '22 Jan 2024', applications: 10 }
+                    };
+                    
+                    var details = requirementDetails[jobId] || { title: jobTitle, company: company, type: 'Full Time', salary: 'Competitive', location: 'Multiple', skills: 'Various', eligibility: 'As per requirements', posted: 'Recent', applications: 0 };
+                    
+                    document.getElementById('requirementDetailsTitle').textContent = details.title;
+                    document.getElementById('requirementDetailsCompany').textContent = details.company;
+                    document.getElementById('requirementDetailsType').textContent = details.type;
+                    document.getElementById('requirementDetailsSalary').textContent = details.salary;
+                    document.getElementById('requirementDetailsLocation').textContent = details.location;
+                    document.getElementById('requirementDetailsSkills').textContent = details.skills;
+                    document.getElementById('requirementDetailsEligibility').textContent = details.eligibility;
+                    document.getElementById('requirementDetailsPosted').textContent = details.posted;
+                    document.getElementById('requirementDetailsApplications').textContent = details.applications;
+                    
+                    var modal = new bootstrap.Modal(document.getElementById('requirementDetailsModal'));
+                    modal.show();
+                });
+            });
+
+            // Resume functions
+            window.viewResume = function(filename) {
+                alert('Opening resume: ' + filename + '\n\n(In a real application, this would open the PDF in a new tab or viewer.)');
+            };
+
+            window.downloadResume = function(filename) {
+                alert('Downloading resume: ' + filename + '\n\n(In a real application, this would trigger a file download.)');
+            };
+        })();
+    </script>
+
+    <!-- Requirement Details Modal -->
+    <div class="modal fade" id="requirementDetailsModal" tabindex="-1" aria-labelledby="requirementDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="requirementDetailsModalLabel"><i class="fas fa-briefcase me-2"></i>Requirement Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 id="requirementDetailsTitle" class="mb-3"></h4>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong><i class="fas fa-building me-2 text-primary"></i>Company:</strong> <span id="requirementDetailsCompany"></span></p>
+                            <p><strong><i class="fas fa-briefcase me-2 text-primary"></i>Job Type:</strong> <span id="requirementDetailsType"></span></p>
+                            <p><strong><i class="fas fa-rupee-sign me-2 text-primary"></i>Salary:</strong> <span id="requirementDetailsSalary"></span></p>
+                            <p><strong><i class="fas fa-map-marker-alt me-2 text-primary"></i>Location:</strong> <span id="requirementDetailsLocation"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong><i class="fas fa-code me-2 text-primary"></i>Required Skills:</strong> <span id="requirementDetailsSkills"></span></p>
+                            <p><strong><i class="fas fa-check-circle me-2 text-primary"></i>Eligibility:</strong> <span id="requirementDetailsEligibility"></span></p>
+                            <p><strong><i class="fas fa-calendar me-2 text-primary"></i>Posted:</strong> <span id="requirementDetailsPosted"></span></p>
+                            <p><strong><i class="fas fa-users me-2 text-primary"></i>Applications:</strong> <span id="requirementDetailsApplications"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Approve Company Confirmation Modal -->
+    <div class="modal fade confirmation-modal" id="approveCompanyModal" tabindex="-1" aria-labelledby="approveCompanyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="approveCompanyModalLabel"><i class="fas fa-check-circle me-2"></i>Confirm Approval</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to approve <strong id="confirmApproveCompanyName"></strong>?</p>
+                    <p class="text-muted small">This will activate their account and allow them to post job requirements.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="confirmApproveBtn">Confirm Approval</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reject Company Confirmation Modal -->
+    <div class="modal fade confirmation-modal" id="rejectCompanyModal" tabindex="-1" aria-labelledby="rejectCompanyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="rejectCompanyModalLabel"><i class="fas fa-times-circle me-2"></i>Confirm Rejection</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to reject <strong id="confirmRejectCompanyName"></strong>?</p>
+                    <p class="text-muted small">This action cannot be undone. The company will be notified of the rejection.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmRejectCompanyBtn">Confirm Rejection</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

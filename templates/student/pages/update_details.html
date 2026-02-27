@@ -1,0 +1,197 @@
+{% extends 'student/student_base.html' %}
+{% load static %}
+
+{% block content %}
+  <!-- ========== UPDATE PERSONAL DETAILS PAGE ========== -->
+            <div id="page-personal-details">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-user-edit me-2"></i>Update Personal Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- Personal Information -->
+                            <div class="form-section">
+                                <h6 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h6>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group-floating input-with-icon">
+                                            <i class="fas fa-user input-icon" aria-hidden="true"></i>
+                                            <input type="text" class="form-control" id="studentFirstName" name="first_name" value="{{ user.first_name }}" placeholder=" " required>
+                                            <label class="form-floating-label" for="studentFirstName">First Name <span class="text-danger">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group-floating input-with-icon">
+                                            <i class="fas fa-user input-icon" aria-hidden="true"></i>
+                                            <input type="text" class="form-control" id="studentLastName" name="last_name" value="{{ user.last_name }}" placeholder=" " required>
+                                            <label class="form-floating-label" for="studentLastName">Last Name<span class="text-danger">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group-floating input-with-icon">
+                                            <i class="fas fa-envelope input-icon" aria-hidden="true"></i>
+                                            <input type="email" class="form-control" id="studentEmail" name="email" value="{{ user.email }}" placeholder=" " required>
+                                            <label class="form-floating-label" for="studentEmail">Email <span class="text-danger">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group-floating input-with-icon">
+                                            <i class="fas fa-phone input-icon" aria-hidden="true"></i>
+                                            <input type="tel" class="form-control" id="studentPhone" name="phone" value="{{ profile.phone }}" pattern="[0-9]{10}"  maxlength="10" minlength="10" inputmode="numeric " required>
+                                            <label class="form-floating-label" for="studentPhone">Phone <span class="text-danger">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="studentDob"><i class="fas fa-calendar me-1 text-muted"></i>Date of Birth</label>
+                                            <input type="date" class="form-control" id="studentDob" name="dob" value="{{ profile.dob|date:'Y-m-d' }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="studentGender"><i class="fas fa-venus-mars me-1 text-muted"></i>Gender</label>
+                                            <select class="form-select" id="studentGender" name="gender">
+                                                <option value="">Select gender</option>
+                                                <option value="Male" {% if profile.gender == "Male" %}selected{% endif %}>Male</option>
+                                                <option value="Female" {% if profile.gender == "Female" %}selected{% endif %}>Female</option>
+                                                <option value="Other" {% if profile.gender == "Other" %}selected{% endif %}>Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fas fa-camera me-1"></i> Passport Size Photo</label>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="passport-photo-preview rounded-circle overflow-hidden bg-light border position-relative" id="passportPhotoPreview" style="width:80px;height:80px;min-width:80px;flex-shrink:0;">
+                                            <i class="fas fa-user fa-2x text-muted position-absolute top-50 start-50 translate-middle" id="passportPhotoPlaceholder" style="z-index:0;"></i>
+                                            {% if profile.passport_photo %}
+                                            <img id="passportPhotoImg" src="{{ profile.passport_photo.url }}" alt="Photo" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit:cover;display:none;z-index:1;">
+                                            {% endif %}
+                                        </div>
+                                        <input type="file" class="form-control" id="studentPassportPhoto" name="passport_photo" accept="image/jpeg,image/jpg,image/png" style="max-width:220px;">
+                                    </div>
+                                    <small class="text-muted">JPG or PNG, max 500KB</small>
+                                </div>
+                            </div>
+                            <!-- Academic Info -->
+                            <div class="form-section">
+                                <h6 class="form-section-title"><i class="fas fa-graduation-cap"></i> Academic Info</h6>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="studentCourse"><i class="fas fa-book me-1 text-muted"></i>Course</label>
+                                            <select class="form-select" id="studentCourse" name="course">
+                                                <option value="">Select course</option>
+                                                <option value="CSE" {% if profile.course == "CSE" %}selected{% endif %}>CSE</option>
+                                                <option value="IT" {% if profile.course == "IT" %}selected{% endif %}>IT</option>
+                                                <option value="ECE" {% if profile.course == "ECE" %}selected{% endif %}>ECE</option>
+                                                <option value="BCA" {% if profile.course == "BCA" %}selected{% endif %}>BCA</option>
+                                                <option value="MCA" {% if profile.course == "MCA" %}selected{% endif %}>MCA</option>
+                                                <option value="BE" {% if profile.course == "BE" %}selected{% endif %}>BE</option>
+                                                <option value="B.Tech" {% if profile.course == "B.Tech" %}selected{% endif %}>B.Tech</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="studentYear"><i class="fas fa-calendar-alt me-1 text-muted"></i>Year</label>
+                                            <select class="form-select" id="studentYear" name="year">
+                                                <option value="">Select year</option>
+                                                <option value="First Year" {% if profile.year == "First Year" %}selected{% endif %}>First Year</option>
+                                                <option value="Second Year" {% if profile.year == "Second Year" %}selected{% endif %}>Second Year</option>
+                                                <option value="Third Year" {% if profile.year == "Third Year" %}selected{% endif %}>Third Year</option>
+                                                <option value="Final Year" {% if profile.year == "Final Year" %}selected{% endif %}>Final Year</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-floating input-with-icon">
+                                    <i class="fas fa-id-card input-icon" aria-hidden="true"></i>
+                                    <input type="text" class="form-control" id="studentId" name="enroll_number" value="{{ profile.enroll_number }}" placeholder=" ">
+                                    <label class="form-floating-label" for="studentId">Student ID / Roll Number</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group-floating input-with-icon">
+                                            <i class="fas fa-chart-line input-icon" aria-hidden="true"></i>
+                                            <input type="number" min="0" max="10" step="0.01" class="form-control" id="studentCgpa" name="cgpa" value="{{ profile.cgpa }}" placeholder=" " required>
+                                            <label class="form-floating-label" for="studentCgpa">CGPA <span class="text-danger">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group-floating input-with-icon">
+                                            <i class="fas fa-code input-icon" aria-hidden="true"></i>
+                                            <input type="text" class="form-control" id="studentSkills" name="skills" value="{{ profile.skills }}" placeholder=" ">
+                                            <label class="form-floating-label" for="studentSkills">Skills (comma-separated)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Profile & Links -->
+                            <div class="form-section">
+                                <h6 class="form-section-title"><i class="fas fa-link"></i> Profile & Links</h6>
+                                <div class="form-group-floating input-with-icon">
+                                    <i class="fas fa-linkedin input-icon" aria-hidden="true"></i>
+                                    <input type="url" class="form-control" id="studentLinkedin" name="linkedin" value="{{ profile.linkedin|default_if_none:'' }}" placeholder=" ">
+                                    <label class="form-floating-label" for="studentLinkedin">LinkedIn Profile</label>
+                                </div>
+                                <div class="form-group-floating input-with-icon">
+                                    <i class="fas fa-github input-icon" aria-hidden="true"></i>
+                                    <input type="url" class="form-control" id="studentGithub" name="github" value="{{ profile.github|default_if_none:'' }}" placeholder=" ">
+                                    <label class="form-floating-label" for="studentGithub">GitHub Profile</label>
+                                </div>
+                                <div class="form-group-floating input-with-icon">
+                                    <i class="fas fa-globe input-icon" aria-hidden="true"></i>
+                                    <input type="url" class="form-control" id="studentPortfolio" name="portfolio" value="{{ profile.portfolio|default_if_none:''}}" placeholder=" ">
+                                    <label class="form-floating-label" for="studentPortfolio">Portfolio Website</label>
+                                </div>
+                            </div>
+                            <!-- Resume -->
+                            <div class="form-section">
+                                <h6 class="form-section-title"><i class="fas fa-file-pdf"></i> Resume</h6>
+                                <div class="file-drop-zone" id="resumeDropZone" role="button" tabindex="0">
+                                    <input type="file" class="file-drop-input" id="resumeUpload" name="resume" accept=".pdf,application/pdf" aria-label="Upload resume PDF">
+                                    <i class="fas fa-cloud-upload-alt file-drop-icon" aria-hidden="true"></i>
+                                    <span class="file-drop-text">Drop your resume here or click to upload</span>
+                                    <span class="file-drop-hint">PDF only, max 2MB</span>
+                                    <span class="file-name" id="resumeFileName"></span>
+                                </div>
+                            </div>
+                            <!-- Password (optional change) -->
+                            <div class="form-section">
+                                <h6 class="form-section-title"><i class="fas fa-lock"></i> Change Password</h6>
+                                <p class="text-muted small mb-2">Leave blank to keep current password.</p>
+                                <div class="form-group-floating input-with-icon">
+                                    <i class="fas fa-lock input-icon" aria-hidden="true"></i>
+                                    <input type="password" class="form-control" id="studentNewPassword" name="current_password" placeholder=" " autocomplete="new-password">
+                                    <label class="form-floating-label" for="studentNewPassword">Current Password</label>
+                                </div>
+                                <div class="form-group-floating input-with-icon">
+                                    <i class="fas fa-lock input-icon" aria-hidden="true"></i>
+                                    <input type="password" class="form-control" id="studentNewPassword" name="new_password" placeholder=" " autocomplete="new-password">
+                                    <label class="form-floating-label" for="studentNewPassword">New Password</label>
+                                </div>
+                                <div class="form-group-floating input-with-icon">
+                                    <i class="fas fa-lock input-icon" aria-hidden="true"></i>
+                                    <input type="password" class="form-control" id="studentConfirmPassword" name="confirm_password" placeholder=" " autocomplete="new-password">
+                                    <label class="form-floating-label" for="studentConfirmPassword">Confirm New Password</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-hover-ripple">
+                                <i class="fas fa-save me-2"></i>Save Changes
+                            </button>
+                             <button type="submit" class="btn btn-primary btn-hover-ripple" name="redirect_dashboard" value="1">
+                                <i class="fas fa-save me-2"></i>Save & Go to Dashboard
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

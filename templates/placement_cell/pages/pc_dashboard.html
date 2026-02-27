@@ -1,0 +1,148 @@
+{% extends "placement_cell/pc_base.html" %}
+{% load static %}
+{% block content %}
+
+                        <!-- ========== HOME PAGE ========== -->
+            <div id="page-home" class="dashboard-page active">
+                <div class="mb-4">
+                    <h1 class="dashboard-greeting">Welcome, Placement Officer</h1>
+                    <p class="dashboard-greeting-sub">System overview and pending actions.</p>
+                </div>
+
+                <!-- Pending approvals count — prominent -->
+                <div class="card border-warning mb-4">
+                    <div class="card-body d-flex flex-wrap align-items-center justify-content-between gap-3">
+                        <div class="d-flex align-items-center">
+                            <div class="rounded-circle bg-warning bg-opacity-25 p-3 me-3">
+                                <i class="fas fa-clock text-warning fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0 fw-bold">3 Pending Approvals</h5>
+                                <p class="text-muted small mb-0">Company registrations awaiting your review</p>
+                            </div>
+                        </div>
+                        <a href="#" class="nav-link-dashboard btn btn-warning" data-page="page-approve-companies">
+                            <i class="fas fa-check-circle me-2"></i>Review & Approve
+                        </a>
+                    </div>
+                </div>
+
+                <!-- System overview cards -->
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card">
+                            <i class="fas fa-user-graduate fa-2x mb-2"></i>
+                            <h3>1,250</h3>
+                            <p>Total Students</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card success">
+                            <i class="fas fa-building fa-2x mb-2"></i>
+                            <h3>150</h3>
+                            <p>Registered Companies</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card warning">
+                            <i class="fas fa-briefcase fa-2x mb-2"></i>
+                            <h3>500</h3>
+                            <p>Active Requirements</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card info">
+                            <i class="fas fa-check-circle fa-2x mb-2"></i>
+                            <h3>800</h3>
+                            <p>Total Placements</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Recent registrations -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0 fw-semibold"><i class="fas fa-user-plus me-2"></i>Recent Registrations</h5>
+                                <a href="#" class="nav-link-dashboard btn btn-sm btn-outline-primary" data-page="page-view-students">View all</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <h6 class="small text-muted text-uppercase mb-2">Students</h6>
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="recent-app-item border-0 px-0 py-2">
+                                            <span class="fw-semibold">Rajesh Kumar</span>
+                                            <span class="text-muted small">— IT · 28 Jan</span>
+                                        </li>
+                                        <li class="recent-app-item border-0 px-0 py-2">
+                                            <span class="fw-semibold">Priya Sharma</span>
+                                            <span class="text-muted small">— ECE · 27 Jan</span>
+                                        </li>
+                                        <li class="recent-app-item border-0 px-0 py-2">
+                                            <span class="fw-semibold">Amit Verma</span>
+                                            <span class="text-muted small">— CS · 26 Jan</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h6 class="small text-muted text-uppercase mb-2">Companies</h6>
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="recent-app-item border-0 px-0 py-2">
+                                            <span class="fw-semibold">StartupXYZ</span>
+                                            <span class="text-muted small">— Pending · 27 Jan</span>
+                                        </li>
+                                        <li class="recent-app-item border-0 px-0 py-2">
+                                            <span class="fw-semibold">FinanceHub</span>
+                                            <span class="text-muted small">— Pending · 26 Jan</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- System overview cards (stats) -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0 fw-semibold"><i class="fas fa-chart-pie me-2"></i>System Overview</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <div class="system-overview-card text-center">
+                                            <h4 class="text-primary mb-1 fw-bold">85%</h4>
+                                            <small class="text-muted">Placement Rate</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="system-overview-card text-center">
+                                            <h4 class="text-success mb-1 fw-bold">₹12.5L</h4>
+                                            <small class="text-muted">Avg Package</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="system-overview-card text-center">
+                                            <h4 class="text-info mb-1 fw-bold">₹28L</h4>
+                                            <small class="text-muted">Highest Package</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="system-overview-card text-center">
+                                            <h4 class="text-secondary mb-1 fw-bold">12</h4>
+                                            <small class="text-muted">New Jobs This Week</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3 pt-3 border-top">
+                                    <a href="#" class="nav-link-dashboard btn btn-outline-primary w-100" data-page="page-view-requirements">
+                                        <i class="fas fa-briefcase me-2"></i>View All Requirements
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endblock content %}

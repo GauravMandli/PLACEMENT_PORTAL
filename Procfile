@@ -1,0 +1,1 @@
+web: gunicorn PLACEMENT_PORTAL.wsgi

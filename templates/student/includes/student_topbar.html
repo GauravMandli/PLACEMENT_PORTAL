@@ -1,0 +1,28 @@
+{% load static %}
+
+<!-- Topbar -->
+            <div class="topbar">
+                <div>
+                    <button class="mobile-menu-toggle" type="button" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="d-inline ms-3 mb-0 fs-4 fw-bold" id="page-title">{{ page_title }}</h1>
+                </div>
+                <div class="user-profile">
+                    <div class="text-end">
+                        <strong id="topbarName">Enrollment No. {{ user.username }}</strong><br>
+                        <small class="text-muted" id="topbarBranch">{{ profile.course }}</small>
+                    </div>
+                    <div class="user-avatar" id="topbarAvatar">
+                        {% if profile.passport_photo %}
+                        <img src="{{ profile.passport_photo.url }}"
+                            alt="Profile Photo"
+                            style="width:100%;height:100%;object-fit:cover;">
+                        {% else %}
+                            {{ user.first_name|slice:"1"|upper }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+

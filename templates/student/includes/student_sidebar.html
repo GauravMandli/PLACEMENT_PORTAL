@@ -1,0 +1,65 @@
+{% load static %}
+
+
+<!-- Left Sidebar -->
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+    <div class="sidebar-header">
+        <h3><i class="fas fa-briefcase"></i>Placement Portal</h3>
+    </div>
+    <nav class="sidebar-nav">
+        <ul class="sidebar-menu">
+            <li>
+                <a href="{% url 'student_dashboard' %}"    class="nav-link-dashboard {% if active_page == 'dashboard' %}active{% endif %}">
+                    <i class="fas fa-home"></i>Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'update_details' %}"
+   class="nav-link-dashboard {% if active_page == 'update' %}active{% endif %}">
+ 
+                    <!-- add hatu data-page="page-personal-details -->
+                    <i class="fas fa-user-edit"></i>Update Personal Details
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'job_listing' %}" 
+   class="nav-link-dashboard {% if active_page == 'jobs' %}active{% endif %}">
+                    <i class="fas fa-briefcase"></i>New Job Listings
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'applied_jobs' %}" 
+   class="nav-link-dashboard {% if active_page == 'applied' %}active{% endif %}">
+                    <i class="fas fa-file-alt"></i>Applied Jobs
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'shortlisted_company' %}" 
+              class="nav-link-dashboard {% if active_page == 'shortlisted' %}active{% endif %}">
+
+                    <i class="fas fa-calendar-check"></i>Shortlisted Companies
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'selected_company' %}" 
+   class="nav-link-dashboard {% if active_page == 'selected' %}active{% endif %}">
+                    <i class="fas fa-check-circle"></i>Selected Companies
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'placement_contact' %}" 
+   class="nav-link-dashboard {% if active_page == 'contact' %}active{% endif %}">
+                    <i class="fas fa-address-card"></i>Placement Cell Contact
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="sidebar-footer">
+        <ul class="sidebar-menu">
+            <li>
+                <a href="{% url 'student_logout' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
+</aside>

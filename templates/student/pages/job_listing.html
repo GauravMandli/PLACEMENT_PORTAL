@@ -1,0 +1,103 @@
+{% extends 'student/student_base.html' %}
+{% load static %}
+
+{% block content %}
+            <!-- ========== NEW JOB LISTINGS PAGE ========== -->
+            <div id="page-job-listings" class="dashboard-page">
+                <div class="filter-bar">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <label class="form-label mb-0 me-2">Filter by Job Role:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-select form-select-sm" id="jobRoleFilter">
+                                <option value="">All Roles</option>
+                                <option value="python">Python</option>
+                                <option value="java">Java</option>
+                                <option value="web">Web</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="jobListingsContainer">
+                    <div class="col-md-6 col-lg-4 mb-4 job-card-item" data-role="python">
+                        <div class="card job-card h-100">
+                            <div class="card-body">
+                                <h6 class="text-primary mb-2">Tech Corp</h6>
+                                <h5 class="card-title mb-2">Python Developer</h5>
+                                <p class="text-muted small mb-3"><strong>Eligibility:</strong> CGPA ≥ 7.5, Python, SQL</p>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-primary flex-grow-1 view-job-details btn-hover-ripple" data-job-id="1" data-job-title="Python Developer" data-company="Tech Corp">View Details</button>
+                                    <a href="#" class="btn btn-sm btn-primary flex-grow-1 apply-job-btn btn-hover-ripple" data-job-id="1" data-job-title="Python Developer">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4 job-card-item" data-role="java">
+                        <div class="card job-card h-100">
+                            <div class="card-body">
+                                <h6 class="text-primary mb-2">Innovate Ltd</h6>
+                                <h5 class="card-title mb-2">Java Backend Developer</h5>
+                                <p class="text-muted small mb-3"><strong>Eligibility:</strong> CGPA ≥ 7.0, Java, Spring</p>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-primary flex-grow-1 view-job-details btn-hover-ripple" data-job-id="1" data-job-title="Python Developer" data-company="Tech Corp">View Details</button>
+                                    <a href="#" class="btn btn-sm btn-primary flex-grow-1 apply-job-btn btn-hover-ripple" data-job-id="1" data-job-title="Python Developer">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4 job-card-item" data-role="web">
+                        <div class="card job-card h-100">
+                            <div class="card-body">
+                                <h6 class="text-primary mb-2">Cloud Solutions</h6>
+                                <h5 class="card-title mb-2">Web Developer (React)</h5>
+                                <p class="text-muted small mb-3"><strong>Eligibility:</strong> CGPA ≥ 7.0, HTML/CSS, JavaScript, React</p>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-primary flex-grow-1 view-job-details btn-hover-ripple" data-job-id="1" data-job-title="Python Developer" data-company="Tech Corp">View Details</button>
+                                    <a href="#" class="btn btn-sm btn-primary flex-grow-1 apply-job-btn btn-hover-ripple" data-job-id="1" data-job-title="Python Developer">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4 job-card-item" data-role="python">
+                        <div class="card job-card h-100">
+                            <div class="card-body">
+                                <h6 class="text-primary mb-2">Data Labs</h6>
+                                <h5 class="card-title mb-2">Python / Data Engineer</h5>
+                                <p class="text-muted small mb-3"><strong>Eligibility:</strong> CGPA ≥ 7.5, Python, SQL, Pandas</p>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-primary flex-grow-1 view-job-details btn-hover-ripple" data-job-id="1" data-job-title="Python Developer" data-company="Tech Corp">View Details</button>
+                                    <a href="#" class="btn btn-sm btn-primary flex-grow-1 apply-job-btn btn-hover-ripple" data-job-id="1" data-job-title="Python Developer">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4 job-card-item" data-role="java">
+                        <div class="card job-card h-100">
+                            <div class="card-body">
+                                <h6 class="text-primary mb-2">Finance Corp</h6>
+                                <h5 class="card-title mb-2">Java Full Stack</h5>
+                                <p class="text-muted small mb-3"><strong>Eligibility:</strong> CGPA ≥ 7.0, Java, Angular/React</p>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-primary flex-grow-1 view-job-details btn-hover-ripple" data-job-id="1" data-job-title="Python Developer" data-company="Tech Corp">View Details</button>
+                                    <a href="#" class="btn btn-sm btn-primary flex-grow-1 apply-job-btn btn-hover-ripple" data-job-id="1" data-job-title="Python Developer">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4 job-card-item" data-role="web">
+                        <div class="card job-card h-100">
+                            <div class="card-body">
+                                <h6 class="text-primary mb-2">Digital Innovations</h6>
+                                <h5 class="card-title mb-2">Frontend Developer</h5>
+                                <p class="text-muted small mb-3"><strong>Eligibility:</strong> CGPA ≥ 6.5, HTML/CSS, JS, React/Vue</p>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-primary flex-grow-1 view-job-details btn-hover-ripple" data-job-id="1" data-job-title="Python Developer" data-company="Tech Corp">View Details</button>
+                                    <a href="#" class="btn btn-sm btn-primary flex-grow-1 apply-job-btn btn-hover-ripple" data-job-id="1" data-job-title="Python Developer">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% load static %}
+        <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-briefcase"></i>Placement Portal</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="{% url 'placement_cell:pc_dashboard' %}" class="nav-link-dashboard {% if active_page == 'dashboard' %} active {% endif %} ">
+                            <i class="fas fa-home"></i>Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'placement_cell:view_students' %}" class="nav-link-dashboard {% if active_page == 'view_students' %} active {% endif %} ">
+                            <i class="fas fa-user-graduate"></i>View Students
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'placement_cell:view_company' %}" class="nav-link-dashboard {% if active_page == 'view_company' %} active {% endif %}">
+                            <i class="fas fa-building"></i>View Companies
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'placement_cell:approve_company' %}" class="nav-link-dashboard {% if active_page == 'approve_company' %} active {% endif %}">
+                            <i class="fas fa-check-circle"></i>Approve Companies
+                            <span class="badge bg-danger pending-badge ms-2" id="pending-count">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'placement_cell:view_requirements' %}" class="nav-link-dashboard {% if active_page == 'view_requirements' %} active {% endif %} ">
+                            <i class="fas fa-briefcase"></i>View Requirements
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'placement_cell:shortlisted_students' %}" class="nav-link-dashboard {% if active_page == 'shortlisted_students' %} active {% endif %} ">
+                          <i class="fas fa-user-clock"></i>View Shortlisted Students
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="{% url 'placement_cell:selected_students' %}" class="nav-link-dashboard {% if active_page == 'selected_students' %} active {% endif %} ">
+                          <i class="fas fa-user-check"></i>View Selected Students
+                        </a>
+                      </li>
+                      
+                    <li>
+                        <a href="{% url 'placement_cell:view_contacts' %}" class="nav-link-dashboard {% if active_page == 'view_contacts' %} active {% endif %}">
+                            <i class="fas fa-address-book"></i>View Contacts
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="{% url 'student_logout' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
