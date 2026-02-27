@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'placement_portal.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('postgresql://gauravmandli:8oAUgCY66OTM0pOAMO3UHUjD0nJdufR0@dpg-d6grokpdrdic738kkfeg-a.singapore-postgres.render.com/myproject_db_kzzj')
+        default=os.environ.get('DATABASE_URL')
     )
 }
 
